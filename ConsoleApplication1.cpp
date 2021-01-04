@@ -47,7 +47,15 @@ public:
         }
         cout << endl;
     }
-
+    void operator*=(T x) {
+        a *= x;
+        b *= x;
+        c *= x;
+    }
+    Equation<T> operator-(T x) {
+        Equation<T> result(a - x, b - x, c - x);
+        return result;
+    }
     T Disc() {
 
 
@@ -122,17 +130,16 @@ private:
 
 int main()
 {
-    Equation<double> equation(-1, 2, 5);
+    Equation<int> equation(-1, 2, 5);
 
     equation.print();
 
     equation.printResult();
 
-    Equation<float> equation1(1, 1, 1);
-
-    equation1.print();
-
-    equation1.printResult();
+    equation *= -10;
+    equation.print();
+    equation = equation - 20;
+    equation.print();
 }
 
 // Запуск программы: CTRL+F5 или меню "Отладка" > "Запуск без отладки"
